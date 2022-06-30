@@ -20,9 +20,11 @@ namespace MyO_Backend.Controllers
     public class UserController : BaseController
     {
         private readonly IUserService _userService;
-        public UserController(IMapper mapper, IUserService userService) : base(mapper)
+        private readonly IOrderService _orderService;
+        public UserController(IMapper mapper, IUserService userService, IOrderService orderService) : base(mapper)
         {
             _userService = userService;
+            _orderService = orderService;
         }
 
         [Authorize]
@@ -43,6 +45,16 @@ namespace MyO_Backend.Controllers
             var userResource = _mapper.Map<UserResource>(response.Data);
 
             return new ApiResponse<UserResource>(HttpStatusCode.OK, response.Message, userResource);
+        }
+
+        [Authorize]
+        [HttpGet("{id}/Order")]
+        public async Task<ApiResponse<List<OrderResource>>> GetOrdersByUserId(int id)
+        {
+            var response = await _orderService.GetAllOrdersByUserId(id);
+            var OrdersResource = _mapper.Map<List<OrderResource>>(response.Data);
+
+            return new ApiResponse<List<OrderResource>>(HttpStatusCode.OK, response.Message, OrdersResource);
         }
 
         [AllowAnonymous]

@@ -9,6 +9,8 @@ namespace MyO_Backend.Mapping
         public ViewModelToModelProfile()
         {
             CreateMap<UserViewModel, User>();
+            CreateMap<OrderViewModel, Order>();
+            CreateMap<OrderDetailViewModel, OrderDetail>();
         }
     }
 }

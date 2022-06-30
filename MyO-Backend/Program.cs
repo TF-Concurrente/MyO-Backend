@@ -56,7 +56,7 @@ builder.Services.AddSwaggerGen(options =>
         {
             Name = "GitHub Repository",
             Email = "sergio.aqs17@gmail.com",
-            Url = new Uri("https://github.com/Zerocomes/SmartWorkout-Backend/tree/master"),
+            Url = new Uri("https://github.com/Zerocomes/MyO-Backend/tree/master"),
         }
     });
     var securitySchema = new OpenApiSecurityScheme
@@ -88,6 +88,9 @@ builder.Services.Configure<RequestLocalizationOptions>(options =>
     options.SupportedUICultures = supportedCultures;
 });
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IOrderDetailService, OrderDetailService>();
+builder.Services.AddScoped<IOrderService, OrderService>();
+builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddMvc().AddJsonOptions(o =>
 {
     o.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;

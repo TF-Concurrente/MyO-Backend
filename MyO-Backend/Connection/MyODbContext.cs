@@ -12,5 +12,8 @@ namespace MyO_Backend.Connection
         }
 
         public DbSet<User> User { get; set; }
+        public DbSet<Product> Product { get; set; }
+        public DbSet<OrderDetail> OrderDetail { get; set; }
+        public DbSet<Order> Order { get; set; }
     }
 }

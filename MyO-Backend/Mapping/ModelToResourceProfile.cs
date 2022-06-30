@@ -11,6 +11,9 @@ namespace MyO_Backend.Mapping
             CreateMap<User, UserResource>()
                 .ForMember(u => u.FullName, opt => opt
                 .MapFrom(us => us.FirstName + " " + us.LastName));
+            CreateMap<Order, OrderResource>();
+            CreateMap<OrderDetail, OrderDetailResource>();
+            CreateMap<Product, ProductResource>();
         }
     }
 }
