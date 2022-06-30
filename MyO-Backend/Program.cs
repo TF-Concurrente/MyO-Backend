@@ -6,6 +6,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using MyO_Backend.Authentication;
 using MyO_Backend.Connection;
+using MyO_Backend.Services;
 using System.Globalization;
 using System.Text;
 using System.Text.Json.Serialization;
@@ -86,6 +87,7 @@ builder.Services.Configure<RequestLocalizationOptions>(options =>
     options.SupportedCultures = supportedCultures;
     options.SupportedUICultures = supportedCultures;
 });
+builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddMvc().AddJsonOptions(o =>
 {
     o.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
@@ -96,7 +98,7 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    
+    app.UseDeveloperExceptionPage();
 }
 
 app.UseSwagger();
@@ -109,6 +111,7 @@ app.UseApiResponseAndExceptionWrapper(new AutoWrapperOptions { UseCustomSchema =
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
