@@ -112,7 +112,13 @@ app.UseSwaggerUI(options =>
 
 app.UseApiResponseAndExceptionWrapper(new AutoWrapperOptions { UseCustomSchema = true, UseApiProblemDetailsException = true, IsDebug = true });
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
+var webSocketOptions = new WebSocketOptions
+{
+    KeepAliveInterval = TimeSpan.FromMinutes(2)
+};
+
+app.UseWebSockets(webSocketOptions);
 
 app.UseAuthentication();
 app.UseAuthorization();

@@ -26,7 +26,7 @@ namespace MyO_Backend.Controllers
             OrderDetailService = orderDetailService;
         }
 
-        [Authorize]
+        [AllowAnonymous]
         [HttpGet]
         public async Task<ApiResponse<List<OrderResource>>> GetAllOrders()
         {
@@ -36,7 +36,7 @@ namespace MyO_Backend.Controllers
             return new ApiResponse<List<OrderResource>>(HttpStatusCode.OK, response.Message, orderResources);
         }
 
-        [Authorize]
+        [AllowAnonymous]
         [HttpGet("{id}/OrderDetail")]
         public async Task<ApiResponse<List<OrderDetailResource>>> GetAllOrdersDetailByOrder(int id)
         {
@@ -46,7 +46,7 @@ namespace MyO_Backend.Controllers
             return new ApiResponse<List<OrderDetailResource>>(HttpStatusCode.OK, response.Message , orderDetailResources);
         }
 
-        [Authorize]
+        [AllowAnonymous]
         [HttpGet("{id}")]
         public async Task<ApiResponse<OrderResource>> GetOrderById(int id)
         {
@@ -56,7 +56,7 @@ namespace MyO_Backend.Controllers
             return new ApiResponse<OrderResource>(HttpStatusCode.OK, response.Message, orderResources);
         }
 
-        [Authorize]
+        [AllowAnonymous]
         [HttpDelete("{id}")]
         public async Task<ApiResponse<OrderResource>> DeleteOrder(int id)
         {
@@ -67,7 +67,7 @@ namespace MyO_Backend.Controllers
         }
 
 
-        [Authorize]
+        [AllowAnonymous]
         [HttpPost]
         public async Task<ApiResponse<OrderResource>> SaveOrder(OrderViewModel order)
         {

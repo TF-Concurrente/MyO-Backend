@@ -27,7 +27,7 @@ namespace MyO_Backend.Controllers
             _orderService = orderService;
         }
 
-        [Authorize]
+        [AllowAnonymous]
         [HttpGet]
         public async Task<ApiResponse<List<UserResource>>> GetAllUsers()
         {
@@ -37,7 +37,7 @@ namespace MyO_Backend.Controllers
             return new ApiResponse<List<UserResource>>(HttpStatusCode.OK, response.Message, usersResource);
         }
 
-        [Authorize]
+        [AllowAnonymous]
         [HttpGet("{id}")]
         public async Task<ApiResponse<UserResource>> GetUserById(int id)
         {
@@ -47,7 +47,7 @@ namespace MyO_Backend.Controllers
             return new ApiResponse<UserResource>(HttpStatusCode.OK, response.Message, userResource);
         }
 
-        [Authorize]
+        [AllowAnonymous]
         [HttpGet("{id}/Order")]
         public async Task<ApiResponse<List<OrderResource>>> GetOrdersByUserId(int id)
         {
@@ -76,7 +76,7 @@ namespace MyO_Backend.Controllers
             return new ApiResponse<AuthenticateResponse>(HttpStatusCode.OK, response.Message, new AuthenticateResponse(userResource, responseData.Token));
         }
 
-        [Authorize]
+        [AllowAnonymous]
         [HttpGet("IdentifyByToken")]
         public async Task<ApiResponse<UserResource>> IdentifyUserByToken()
         {
@@ -111,7 +111,7 @@ namespace MyO_Backend.Controllers
             return new ApiResponse<UserResource>(HttpStatusCode.OK, response.Message, userResource);
         }
 
-        [Authorize]
+        [AllowAnonymous]
         [HttpPut("{id}")]
         public async Task<ApiResponse<UserResource>> UpdateUser(int id, UserViewModel user)
         {

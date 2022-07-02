@@ -19,7 +19,7 @@ namespace MyO_Backend.Controllers
             ProductService = productService;
         }
 
-        [Authorize]
+        [AllowAnonymous]
         [HttpGet]
         public async Task<ApiResponse<List<ProductResource>>> GetAllOrders()
         {
